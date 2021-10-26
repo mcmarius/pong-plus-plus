@@ -1,102 +1,12 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include "cantec.h"
+#include "album.h"
+#include "cantaret.h"
+#include "grupare_artistica.h"
 
 using namespace std::string_literals;
-
-class cantec {
-    std::string nume;
-    std::string gama;
-    float durata;
-public:
-    cantec(const std::string &nume, float durata, const std::string &gama) : nume(nume), gama(gama), durata(durata) {}
-
-    friend std::ostream &operator<<(std::ostream &os, const cantec &cantec) {
-        os << "nume: " << cantec.nume << " gama: " << cantec.gama << " durata: " << cantec.durata << "\n";
-        return os;
-    }
-};
-
-class album {
-    std::string nume;
-    std::vector<cantec> cantece;
-public:
-    friend std::ostream &operator<<(std::ostream &os, const album &album) {
-        os << "nume: " << album.nume << " cantece:\n";
-        for(const auto & cantec : album.cantece)
-            os << "\t" << cantec;
-        return os;
-    }
-
-public:
-    void adauga(cantec cantec) {
-        cantece.push_back(cantec);
-    }
-
-    album(const std::string &nume) : nume(nume) {}
-
-    album(const std::string &nume, const std::vector <cantec> &cantece) : nume(nume), cantece(cantece) {}
-
-    album(const album& copie) {
-        this->nume = copie.nume;
-//        this->cantece = copie.cantece;
-//        for(int i = 0; i < copie.cantece.size(); i++) {
-//            this->cantece.push_back(copie.cantece[i]);
-//        }
-        for(const auto & cantec : copie.cantece) {
-            this->cantece.push_back(cantec);
-        }
-    }
-
-    album& operator=(const album& copie) {
-        if(this != &copie) {
-            this->nume = copie.nume;
-            this->cantece = copie.cantece;
-            //std::copy(copie.cantece.begin(), copie.cantece.end(), std::back_inserter(cantece));
-        }
-        return *this;
-    }
-
-    album() = default;
-
-    ~album() {
-        std::cout << "destructor album\n";
-    }
-};
-
-class cantaret {
-    std::string nume;
-    std::string instrument;
-public:
-    cantaret(const std::string &nume, const std::string &instrument) : nume(nume), instrument(instrument) {}
-
-    friend std::ostream &operator<<(std::ostream &os, const cantaret &cantaret) {
-        os << "nume: " << cantaret.nume << " instrument: " << cantaret.instrument << "\n";
-        return os;
-    }
-};
-
-class grupare_artistica {
-    std::string nume;
-    std::vector<cantaret> membri;
-    std::vector<album> albume;
-public:
-    grupare_artistica(const std::string &nume, const std::vector <cantaret> &membri) : nume(nume), membri(membri) {}
-
-    friend std::ostream &operator<<(std::ostream &os, const grupare_artistica &grupare) {
-        os << "nume: " << grupare.nume << "\n\tmembri: ";
-        for(const auto& membru : grupare.membri)
-            os << membru;
-        os << "\talbume: ";
-        for(const auto& album: grupare.albume)
-            os << album;
-        return os;
-    }
-
-    void adauga(album album) {
-        albume.push_back(album);
-    }
-};
 
 int main() {
     cantec la_multi_ani{"LMA"s, 1.3, "la_major"s};
