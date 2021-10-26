@@ -5,6 +5,8 @@
 #include "album.h"
 #include "cantaret.h"
 #include "grupare_artistica.h"
+#include "jucator.h"
+#include "joc.h"
 
 using namespace std::string_literals;
 
@@ -26,5 +28,9 @@ int main() {
     grupare_artistica grup("lautari", {viorel, petru});
     grup.adauga(a1);
     std::cout << grup;
+
+    joc joc_simplu(grup, dificultate::USOR);
+    jucator j("gigel", 0);
+    j.joaca(joc_simplu);
     return 0;
 }

@@ -21,6 +21,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const grupare_artistica &grupare);
 
     void adauga(const album& album);
+    void adauga(const cantaret& cantaret);
 };
 
 #endif //PONG_PLUS_PLUS_GRUPARE_ARTISTICA_H

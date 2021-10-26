@@ -22,3 +22,7 @@ std::ostream &operator<<(std::ostream &os, const grupare_artistica &grupare) {
 void grupare_artistica::adauga(const album &album) {
     albume.push_back(album);
 }
+
+void grupare_artistica::adauga(const cantaret &cantaret) {
+    membri.push_back(cantaret);
+}
