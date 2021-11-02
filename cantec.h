@@ -10,6 +10,7 @@ test
 
 #include <string>
 #include <iostream>
+#include <memory>
 
 class cantec {
 protected:
@@ -22,7 +23,8 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const cantec &cantec);
     const std::string &getNume() const;
     virtual void play() const;
-    virtual cantec* clone() const;
+    void setDurata(float durata);
+    virtual std::shared_ptr <cantec> clone() const;
     virtual ~cantec();
 };
 

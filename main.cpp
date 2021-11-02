@@ -26,10 +26,20 @@ int main() {
     a1.adauga(col);
     a1.play();
 
-    album a2 = album("experimental", {new cantec(c3)});
+    album a2 = album("experimental", {std::make_shared <cantec>(c3)});
     album a3;
 //    a3.operator=(a1.operator=(a2));
-//    a3 = (a1 = a2); // echivalent cu mai sus
+    a1 = a2;
+    std::cout << "---------------------------\n";
+    std::cout << a1 << a2;
+    std::cout << "---------------------------\n";
+    a1.adauga(col);
+    a1.modifica();
+    std::cout << "---------------------------\n";
+    std::cout << a1 << a2;
+    std::cout << "---------------------------\n";
+
+    //    a3 = (a1 = a2); // echivalent cu mai sus
 //    a3 = a1 = a2;
 //    (a3 = a1) = a2; // daca chiar vrem asta, trebuie paranteze
     cantaret viorel("c1", "vioara");

@@ -21,38 +21,37 @@ void album::adauga(const cantec &cantec_) {
 
 album::album(const std::string &nume) : nume(nume) {}
 
-album::album(const std::string &nume, const std::vector <cantec*> &cantece) : nume(nume), cantece(cantece) {}
+album::album(const std::string &nume, const std::vector <std::shared_ptr <cantec>> &cantece)
+: nume(nume), cantece(cantece) {}
 
-album::album(const album &copie) {
-    this->nume = copie.nume;
-//        this->cantece = copie.cantece;
-//        for(int i = 0; i < copie.cantece.size(); i++) {
-//            this->cantece.push_back(copie.cantece[i]);
-//        }
-    for(const auto & cantec : copie.cantece) {
-        this->cantece.push_back(cantec);
-    }
+album::album(const album &copie) : nume(copie.nume) {
+    for(const auto &cantec: copie.cantece)
+        cantece.push_back(cantec->clone());
 }
 
 album &album::operator=(const album &copie) {
     if(this != &copie) {
-        this->nume = copie.nume;
-        this->cantece = copie.cantece;
-        //std::copy(copie.cantece.begin(), copie.cantece.end(), std::back_inserter(cantece));
+        nume = copie.nume;
+        for(const auto &cantec: copie.cantece) {
+            cantece.push_back(cantec->clone());
+        }
     }
     return *this;
 }
 
 album::~album() {
     std::cout << "destructor album\n";
-    for(auto& cantec : cantece) {
-        delete cantec;
-    }
 }
 
 void album::play() {
-    for(const auto& cantec : cantece) {
+    for(const auto &cantec: cantece) {
         std::cout << "acum se reda melodia " << cantec->getNume() << "\n";
         cantec->play();
+    }
+}
+
+void album::modifica() {
+    for(auto &cantec: cantece) {
+        cantec->setDurata(5);
     }
 }

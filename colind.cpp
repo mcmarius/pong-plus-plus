@@ -21,6 +21,6 @@ colind::~colind() {
     std::cout << "destr colind\n";
 }
 
-cantec *colind::clone() const {
-    return new colind(*this);
+std::shared_ptr <cantec> colind::clone() const {
+    return std::make_shared <colind>(*this);
 }

@@ -25,9 +25,13 @@ const std::string &cantec::getNume() const {
 }
 
 cantec::~cantec() {
-    std::cout << "destr cantec " << nume <<"\n";
+    std::cout << "destr cantec " << nume << "\n";
 }
 
-cantec *cantec::clone() const {
-    return new cantec(*this);
+std::shared_ptr <cantec> cantec::clone() const {
+    return std::make_shared <cantec>(*this);
+}
+
+void cantec::setDurata(float durata) {
+    cantec::durata = durata;
 }
