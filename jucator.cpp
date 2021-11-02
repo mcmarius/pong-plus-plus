@@ -10,5 +10,5 @@ test
 jucator::jucator(const std::string &nume, int scor) : nume(nume), scor(scor) {}
 
 void jucator::joaca(joc &joc) {
-    joc.rulare();
+    scor += joc.rulare();
 }

@@ -13,19 +13,22 @@ test
 
 class album {
     std::string nume;
-    std::vector<cantec> cantece;
+    std::vector<cantec*> cantece;
 public:
     friend std::ostream &operator<<(std::ostream &os, const album &album);
 
     void adauga(const cantec& cantec);
 
     album(const std::string &nume);
-    album(const std::string &nume, const std::vector <cantec> &cantece);
+    album(const std::string &nume, const std::vector <cantec*> &cantece);
+    // TODO trebuie implementata corect copierea si op= sa faca deep copy (adica inca niste new)
     album(const album& copie);
     album() = default;
 
     album& operator=(const album& copie);
     ~album();
+
+    void play();
 };
 
 
