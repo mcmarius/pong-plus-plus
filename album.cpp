@@ -32,9 +32,11 @@ album::album(const album &copie) : nume(copie.nume) {
 album &album::operator=(const album &copie) {
     if(this != &copie) {
         nume = copie.nume;
+        auto cantece_noi = std::vector <std::shared_ptr <cantec>>();
         for(const auto &cantec: copie.cantece) {
-            cantece.push_back(cantec->clone());
+            cantece_noi.push_back(cantec->clone());
         }
+        cantece = cantece_noi;
     }
     return *this;
 }
