@@ -24,3 +24,8 @@ colind::~colind() {
 std::shared_ptr <cantec> colind::clone() const {
     return std::make_shared <colind>(*this);
 }
+
+void colind::afis(std::ostream &os) const {
+    os << "nr: " << nr << ", ";
+    cantec::afis(os);
+}

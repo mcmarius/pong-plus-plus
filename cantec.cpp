@@ -6,10 +6,17 @@ test
 //
 #include "cantec.h"
 
-cantec::cantec(const std::string &nume, float durata, const std::string &gama) : nume(nume), gama(gama), durata(durata) {}
+int cantec::id_max = 1;
+
+cantec::cantec(const std::string &nume, float durata, const std::string &gama) : nume(nume), gama(gama), durata(durata),
+                                                                                 id(id_max) {
+    id_max++;
+}
 
 std::ostream &operator<<(std::ostream &os, const cantec &cantec) {
-    os << "nume: " << cantec.nume << " gama: " << cantec.gama << " durata: " << cantec.durata << "\n";
+    cantec.afis(os);
+//    os << "nume: " << cantec.nume << " gama: " << cantec.gama << " durata: " << cantec.durata;
+    os << "\n";
     return os;
 }
 
@@ -34,4 +41,18 @@ std::shared_ptr <cantec> cantec::clone() const {
 
 void cantec::setDurata(float durata) {
     cantec::durata = durata;
+}
+
+void cantec::afis(std::ostream &os) const {
+//    os << "nume: " << nume << " gama: " << gama << " durata: " << durata;
+    const auto &cantec = *this;
+    os << "id: " << id << "nume: " << cantec.nume << " gama: " << cantec.gama << " durata: " << cantec.durata;
+}
+
+cantec::cantec(const cantec &copie) : id(id_max), durata(copie.durata), nume(copie.nume), gama(copie.gama) {
+    id_max++;
+}
+
+int cantec::getIdMax() {
+    return id_max;
 }

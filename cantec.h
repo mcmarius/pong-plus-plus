@@ -13,12 +13,16 @@ test
 #include <memory>
 
 class cantec {
+    const int id;
+    static int id_max;
 protected:
     std::string nume;
     std::string gama;
     float durata;
+    virtual void afis(std::ostream &os) const;
 public:
     cantec(const std::string &nume, float durata, const std::string &gama);
+    cantec(const cantec &);
 
     friend std::ostream &operator<<(std::ostream &os, const cantec &cantec);
     const std::string &getNume() const;
@@ -26,6 +30,7 @@ public:
     void setDurata(float durata);
     virtual std::shared_ptr <cantec> clone() const;
     virtual ~cantec();
+    static int getIdMax();
 };
 
 #endif //PONG_PLUS_PLUS_CANTEC_H

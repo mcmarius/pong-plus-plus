@@ -12,7 +12,10 @@
 using namespace std::string_literals;
 
 int main() {
+    std::cout << cantec::getIdMax() << "\n";
+
     colind col{"jingle bells", 2.3};
+    std::cout << colind::getIdMax() << "\n";
     col.play();
     cantec la_multi_ani{"LMA"s, 1.3, "la_major"s};
 //    la_multi_ani.play();
@@ -51,5 +54,6 @@ int main() {
     joc joc_simplu(grup, dificultate::USOR);
     jucator j("gigel", 0);
     //j.joaca(joc_simplu);
+    std::cout << colind::getIdMax() << "\n";
     return 0;
 }

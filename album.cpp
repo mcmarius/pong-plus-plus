@@ -29,15 +29,8 @@ album::album(const album &copie) : nume(copie.nume) {
         cantece.push_back(cantec->clone());
 }
 
-album &album::operator=(const album &copie) {
-    if(this != &copie) {
-        auto cantece_noi = std::vector <std::shared_ptr <cantec>>();
-        for(const auto &cantec: copie.cantece) {
-            cantece_noi.push_back(cantec->clone());
-        }
-        cantece = cantece_noi;
-        nume = copie.nume;
-    }
+album &album::operator=(album copie) {
+    swap(*this, copie);
     return *this;
 }
 
@@ -56,4 +49,10 @@ void album::modifica() {
     for(auto &cantec: cantece) {
         cantec->setDurata(5);
     }
+}
+
+void swap(album &a1, album &a2) {
+    using std::swap;
+    swap(a1.cantece, a2.cantece);
+    swap(a1.nume, a2.nume);
 }

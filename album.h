@@ -18,12 +18,13 @@ class album {
 public:
     friend std::ostream &operator<<(std::ostream &os, const album &album);
 
-    void adauga(const cantec& cantec);
+    void adauga(const cantec &cantec);
 
     album(const std::string &nume);
     album(const std::string &nume, const std::vector <std::shared_ptr <cantec>> &cantece);
     album(const album &copie);
-    album &operator=(const album &copie);
+    album &operator=(album copie);
+    friend void swap(album &a1, album &a2);
     album() = default;
     ~album();
 
