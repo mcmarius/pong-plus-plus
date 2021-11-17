@@ -5,12 +5,17 @@ test
 // Created by marius on 2021-10-26.
 //
 #include "cantec.h"
+#include "erori_cantec.h"
 
 int cantec::id_max = 1;
 
 cantec::cantec(const std::string &nume, float durata, const std::string &gama) : nume(nume), gama(gama), durata(durata),
                                                                                  id(id_max) {
     id_max++;
+    if(durata < 0.5)
+        throw cantec_prea_scurt();
+    if(gama == "sol")
+        throw eroare_gama();
 }
 
 std::ostream &operator<<(std::ostream &os, const cantec &cantec) {
@@ -33,10 +38,6 @@ const std::string &cantec::getNume() const {
 
 cantec::~cantec() {
     std::cout << "destr cantec " << nume << "\n";
-}
-
-std::shared_ptr <cantec> cantec::clone() const {
-    return std::make_shared <cantec>(*this);
 }
 
 void cantec::setDurata(float durata) {

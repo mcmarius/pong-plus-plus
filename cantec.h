@@ -28,8 +28,8 @@ public:
     const std::string &getNume() const;
     virtual void play() const;
     void setDurata(float durata);
-    virtual std::shared_ptr <cantec> clone() const;
-    virtual ~cantec();
+    virtual std::shared_ptr <cantec> clone() const = 0;
+    virtual ~cantec() = 0;
     static int getIdMax();
 };
 
