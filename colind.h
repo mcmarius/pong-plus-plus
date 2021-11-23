@@ -18,6 +18,7 @@ public:
     void play() const;
     ~colind();
     std::shared_ptr <cantec> clone() const override;
+    void tralala() {}
 protected:
     void afis(std::ostream &os) const override;
 };

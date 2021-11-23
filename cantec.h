@@ -26,7 +26,7 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const cantec &cantec);
     const std::string &getNume() const;
-    virtual void play() const;
+    virtual void play() const = 0;
     void setDurata(float durata);
     virtual std::shared_ptr <cantec> clone() const = 0;
     virtual ~cantec() = 0;

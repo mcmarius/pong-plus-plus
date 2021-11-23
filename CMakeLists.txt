@@ -12,7 +12,7 @@ else ()
     endif ()
 endif ()
 
-set(SOURCES main.cpp cantec.cpp album.cpp cantaret.cpp grupare_artistica.cpp jucator.cpp joc.cpp colind.cpp colind.h cantec_aniversar.cpp cantec_aniversar.h erori_cantec.cpp erori_cantec.h)
+set(SOURCES main.cpp cantec.cpp album.cpp cantaret.cpp grupare_artistica.cpp jucator.cpp joc.cpp colind.cpp colind.h cantec_aniversar.cpp cantec_aniversar.h erori_cantec.cpp erori_cantec.h menuet.cpp menuet.h)
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 #add_executable(heah main.cpp cantec.cpp cantaret.cpp album.cpp cantec.cpp grupare_artistica.cpp joc.cpp jucator.cpp)
