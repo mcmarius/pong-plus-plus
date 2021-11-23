@@ -6,6 +6,7 @@ test
 //
 
 #include "erori_cantec.h"
+#include <string>
 
 eroare_cantec::eroare_cantec(const std::string &arg) : runtime_error("Eroare cantec: " + arg) {}
 
