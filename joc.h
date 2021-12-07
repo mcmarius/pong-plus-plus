@@ -16,7 +16,7 @@ std::ostream& operator<<(std::ostream& os, const dificultate& dif);
 class joc {
 public:
     int rulare();
-    joc(const grupare_artistica &grup, dificultate dif);
+    joc(grupare_artistica &&grup, dificultate dif);
 private:
     grupare_artistica grup;
     dificultate dif;

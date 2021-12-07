@@ -17,11 +17,53 @@ void f2();
 using namespace std::string_literals;
 
 class baza {
+protected:
+    int x;
 public:
+    virtual void f() {}
+
     baza() = default;
 };
 
+class der1 : virtual public baza {
+public:
+    void f() override {}
+};
+class der2 : public virtual baza {
+public:
+    void f() override {}
+};
+//class der3 : public baza {};
+
+class der_complicata : public der1, public der2 {
+//private:
+//    void f() override {}
+    void f() override {
+        der1::f();
+        der2::f();
+    }
+
+    void g() {
+        f();
+    }
+};
+
+class baza1 {
+    int x;
+};
+class baza2 {
+    int x;
+};
+
+class der_ceva : public baza1, public baza2 {};
+
+template <typename T, typename U>
+void adauga(T &obiect1, U &obiect2) {
+    return obiect1.adauga(obiect2);
+}
+
 int main() {
+
     baza *b = new baza[20];
     delete[] b;
 
@@ -86,6 +128,7 @@ int main() {
 
     auto c2 = cantec_aniversar{"gaudeamus igitur"s, 4.2, "sol_major"s};
     auto c3 = cantec_aniversar{"abc"s, 2.2, "sol_minor"s};
+    auto c4 = std::make_shared <cantec_aniversar>("abc", 3.4, "sol");
     album a1("clasice");
     a1.adauga(c2);
     a1.adauga(la_multi_ani);
@@ -94,9 +137,9 @@ int main() {
     a1.play();
 
     album a2 = album("experimental", {std::make_shared <cantec_aniversar>(c3)});
-    album a3;
+//    album a3;
 //    a3.operator=(a1.operator=(a2));
-    a1 = a2;
+//    a1 = a2;
     std::cout << "---------------------------\n";
     std::cout << a1 << a2;
     std::cout << "---------------------------\n";
@@ -130,11 +173,17 @@ int main() {
     cantaret viorel("c1", "vioara");
     cantaret petru("c1", "pian");
     grupare_artistica grup("lautari", {viorel, petru});
-    grup.adauga(a1);
-    std::cout << grup;
 
-    joc joc_simplu(grup, dificultate::USOR);
-    jucator j("gigel", 0);
+//    adauga<grupare_artistica, album>(grup, std::move(a1));
+    adauga <grupare_artistica, cantaret>(grup, viorel);
+
+    grup.adauga(std::move(a1));
+    std::cout << grup;
+    std::vector <album> aaa;
+    aaa.emplace_back(std::move(a1));
+
+    joc joc_simplu(std::move(grup), dificultate::USOR);
+    jucator <int> j("gigel", 0);
     //j.joaca(joc_simplu);
     std::cout << colind::getIdMax() << "\n";
     return 0;

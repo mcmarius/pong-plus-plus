@@ -7,8 +7,10 @@ test
 
 #include "jucator.h"
 
-jucator::jucator(const std::string &nume, int scor) : nume(nume), scor(scor) {}
+template <typename T>
+jucator <T>::jucator(const std::string &nume, T scor) : nume(nume), scor(scor) {}
 
-void jucator::joaca(joc &joc) {
+template <typename T>
+void jucator <T>::joaca(joc &joc) {
     scor += joc.rulare();
 }

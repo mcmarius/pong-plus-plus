@@ -12,7 +12,7 @@ test
 
 class cantec_aniversar : public cantec {
 public:
-    cantec_aniversar(const std::string &nume, float durata, const std::string &gama);
+    cantec_aniversar(std::string nume, float durata, const std::string &gama);
     std::shared_ptr <cantec> clone() const override;
     void play() const override;
 };

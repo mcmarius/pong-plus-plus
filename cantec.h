@@ -21,7 +21,7 @@ protected:
     float durata;
     virtual void afis(std::ostream &os) const;
 public:
-    cantec(const std::string &nume, float durata, const std::string &gama);
+    cantec(std::string nume, float durata, const std::string &gama);
     cantec(const cantec &);
 
     friend std::ostream &operator<<(std::ostream &os, const cantec &cantec);

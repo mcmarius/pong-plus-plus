@@ -24,15 +24,16 @@ album::album(const std::string &nume) : nume(nume) {}
 album::album(const std::string &nume, const std::vector <std::shared_ptr <cantec>> &cantece)
 : nume(nume), cantece(cantece) {}
 
-album::album(const album &copie) : nume(copie.nume) {
-    for(const auto &cantec: copie.cantece)
-        cantece.push_back(cantec->clone());
-}
-
-album &album::operator=(album copie) {
-    swap(*this, copie);
-    return *this;
-}
+//album::album(const album &copie) : nume(copie.nume) {
+//    std::cout << "cc album " << nume <<"\n";
+//    for(const auto &cantec: copie.cantece)
+//        cantece.push_back(cantec->clone());
+//}
+//
+//album &album::operator=(album copie) {
+//    swap(*this, copie);
+//    return *this;
+//}
 
 album::~album() {
     std::cout << "destructor album\n";
@@ -55,4 +56,10 @@ void swap(album &a1, album &a2) {
     using std::swap;
     swap(a1.cantece, a2.cantece);
     swap(a1.nume, a2.nume);
+}
+
+album::album(album &&copie) {
+    std::cout << "move constr album\n";
+    nume = std::move(copie.nume);
+    cantece = std::move(copie.cantece);
 }

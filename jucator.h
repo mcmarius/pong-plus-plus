@@ -11,12 +11,13 @@ test
 #include <string>
 #include "joc.h"
 
+template <typename T>
 class jucator {
     std::string nume;
-    int scor;
+    T scor;
 public:
-    jucator(const std::string &nume, int scor);
-    void joaca(joc& joc);
+    jucator(const std::string &nume, T scor);
+    void joaca(joc &joc);
 };
 
 #endif //PONG_PLUS_PLUS_JUCATOR_H

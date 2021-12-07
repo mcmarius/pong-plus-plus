@@ -22,10 +22,12 @@ public:
 
     album(const std::string &nume);
     album(const std::string &nume, const std::vector <std::shared_ptr <cantec>> &cantece);
-    album(const album &copie);
-    album &operator=(album copie);
+    album(const album &copie) = delete;
+    album(album &&copie);
+//    album& operator=(album &&copie) = default;
+    album() = delete;
+//    album &operator=(album copie) = delete;
     friend void swap(album &a1, album &a2);
-    album() = default;
     ~album();
 
     void play();

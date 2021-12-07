@@ -59,4 +59,4 @@ int joc::rulare() {
     return scor;
 }
 
-joc::joc(const grupare_artistica &grup, dificultate dif) : grup(grup), dif(dif) {}
+joc::joc(grupare_artistica &&grup, dificultate dif) : grup(std::move(grup)), dif(dif) {}
