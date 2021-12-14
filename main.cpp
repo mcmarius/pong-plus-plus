@@ -11,6 +11,7 @@
 #include "cantec_aniversar.h"
 #include "erori_cantec.h"
 #include "menuet.h"
+#include <stack>
 
 void f1();
 void f2();
@@ -62,8 +63,49 @@ void adauga(T &obiect1, U &obiect2) {
     return obiect1.adauga(obiect2);
 }
 
-int main() {
+class baza0 {
+    std::string tip;
+public:
+    virtual void functie_virtuala1() = 0;
 
+    const std::string &getTip() { return tip; }
+};
+
+class ceva : public baza0 {
+    void g() {}
+
+public:
+    void functie_virtuala1() override {
+        g();
+    }
+};
+
+class abc {
+    std::shared_ptr <baza0> b;
+
+//    baza0 b;
+    void g() {}
+
+    void h() {}
+
+    void hh() {}
+
+public:
+    void f() {
+        b->functie_virtuala1();
+        if(b->getTip() == "ceva") {
+            g();
+        }
+        else if(b->getTip() == "altceva")
+            h();
+        else if(b->getTip() == "altceva 2")
+            hh();
+    }
+};
+
+int main() {
+    auto stiva = std::stack <std::unique_ptr <baza>>();
+    stiva.push(std::unique_ptr <der1>(new der1));
     baza *b = new baza[20];
     delete[] b;
 
@@ -157,6 +199,7 @@ int main() {
         std::cout << error.what() << "\n";
         //throw eroare_cantec("");
         //throw;
+        //throw error;
     }
 //    catch (...) {
 //        throw;
