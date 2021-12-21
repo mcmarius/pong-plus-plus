@@ -20,6 +20,11 @@ public:
     cantec_prea_scurt();
 };
 
+class cantec_not_found : public eroare_cantec {
+public:
+    explicit cantec_not_found(const std::string &arg);
+};
+
 class eroare_gama : public eroare_cantec {
 public:
     eroare_gama();

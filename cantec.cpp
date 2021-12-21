@@ -60,3 +60,7 @@ cantec::cantec(const cantec &copie) : id(id_max), durata(copie.durata), nume(cop
 int cantec::getIdMax() {
     return id_max;
 }
+
+float cantec::getDurata() const {
+    return durata;
+}

@@ -103,9 +103,37 @@ public:
     }
 };
 
+template <int Min = 20, int Max = 50>
+class armor;
+
+template <int Min = 20, int Max = 50>
+std::ostream &operator<<(std::ostream &o, const armor <Min, Max> &c);
+
+template <int Min, int Max>
+class armor {
+    const static int MIN = Min;
+    const static int MAX = Max;
+public:
+    friend std::ostream &operator<< <>(std::ostream &os, const armor <Min, Max> &armor);
+};
+
+template <int Min, int Max>
+std::ostream &operator<<(std::ostream &os, const armor <Min, Max> &armor) {
+    return os;
+}
+
+template
+std::ostream &operator<< <>(std::ostream &o, const armor <20, 30> &x);
+template
+std::ostream &operator<< <>(std::ostream &o, const armor <20, 50> &x);
+
+class player {
+    armor <> a;
+};
+
 int main() {
-    auto stiva = std::stack <std::unique_ptr <baza>>();
-    stiva.push(std::unique_ptr <der1>(new der1));
+//    auto stiva = std::stack <std::unique_ptr <baza>>();
+//    stiva.push(std::unique_ptr <der1>(new der1));
     baza *b = new baza[20];
     delete[] b;
 
@@ -179,6 +207,8 @@ int main() {
     a1.play();
 
     album a2 = album("experimental", {std::make_shared <cantec_aniversar>(c3)});
+    a2.adauga(la_multi_ani);
+    a2.adauga(col);
 //    album a3;
 //    a3.operator=(a1.operator=(a2));
 //    a1 = a2;
@@ -223,12 +253,20 @@ int main() {
     grup.adauga(std::move(a1));
     std::cout << grup;
     std::vector <album> aaa;
-    aaa.emplace_back(std::move(a1));
+//    aaa.emplace_back(std::move(a1));
 
     joc joc_simplu(std::move(grup), dificultate::USOR);
     jucator <int> j("gigel", 0);
     //j.joaca(joc_simplu);
     std::cout << colind::getIdMax() << "\n";
+    std::cout << "--------------\n";
+    std::cout << a2;
+    std::cout << "--------------\n";
+    a2.ordoneaza_nume();
+    std::cout << a2;
+    std::cout << "--------------\n";
+    a2.ordoneaza_durata();
+    std::cout << a2;
     return 0;
 }
 

@@ -14,3 +14,6 @@ cantec_prea_scurt::cantec_prea_scurt() : eroare_cantec("Cantec prea scurt") {}
 
 eroare_gama::eroare_gama() : eroare_cantec("Eroare gama") {
 }
+
+cantec_not_found::cantec_not_found(const std::string &arg) : eroare_cantec("Cantecul nu a fost gasit: " + arg) {
+}

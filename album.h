@@ -29,6 +29,9 @@ public:
 //    album &operator=(album copie) = delete;
     friend void swap(album &a1, album &a2);
     ~album();
+    void ordoneaza_nume();
+    void ordoneaza_durata();
+    std::shared_ptr <cantec> gaseste(const std::string &nume);
 
     void play();
     void modifica();
